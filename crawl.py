@@ -2,6 +2,7 @@
 
 from creepy import Crawler
 from threading import Lock
+import argparse
 
 class TestCrawler(Crawler):
     def __init__(self):
@@ -14,4 +15,8 @@ class TestCrawler(Crawler):
         self.process_lock.release()
 
 c = TestCrawler()
-c.crawl('http://papsi.its.ac.id/')
+parser = argparse.ArgumentParser()
+parser.add_argument("-u", "--url", help="site/url for crawling", required=True)
+args = parser.parse_args()
+site = args.url
+c.crawl(site)
